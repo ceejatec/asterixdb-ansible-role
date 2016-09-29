@@ -1,0 +1,8 @@
+---
+# tasks file for nc
+- name: Start NC Service
+  shell: >
+    nohup {{ asterixdb_installdir }}/bin/asterixncservice -logdir {{ asterixdb_logdir }} < /dev/null > {{ asterixdb_logdir }}/ncservice.log 2>&1 &
+  when: "not 'NCService' in jps_output.stdout"
+
+

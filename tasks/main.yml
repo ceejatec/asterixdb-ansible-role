@@ -14,24 +14,8 @@
     dest: "{{ asterixdb_installdir }}"
     creates: "{{ asterixdb_installdir }}/bin/asterixncservice"
 
-- name: Download Asterix config file (CC only)
-  template:
-    src: asterix.conf
-    dest: "{{ asterixdb_confdir }}"
-  when: asterixdb_cc
-  changed_when: False
-  
 - name: Check Asterix processes
   shell: jps
   register: jps_output
 
-- name: Start NC Service
-  shell: >
-    nohup {{ asterixdb_installdir }}/bin/asterixncservice -logdir {{ asterixdb_logdir }} < /dev/null > {{ asterixdb_logdir }}/ncservice.log 2>&1 &
-  when: "asterixdb_nc and not 'NCService' in jps_output.stdout"
-
-- name: Start CC
-  shell: >
-    nohup {{ asterixdb_installdir }}/bin/asterixcc -config-file {{ asterixdb_confdir }}/asterix.conf < /dev/null > {{ asterixdb_logdir }}/cc.log 2>&1 &
-  when: "asterixdb_cc and not 'CCDriver' in jps_output.stdout"
 

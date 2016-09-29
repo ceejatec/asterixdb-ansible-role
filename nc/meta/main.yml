@@ -48,5 +48,5 @@ galaxy_info:
   - bigdata
   - apache
 
-dependencies: []
+dependencies: [ceejatec.asterixdb]
 

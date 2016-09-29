@@ -1,8 +1,6 @@
 ---
 # defaults file for asterixdb
 asterixdb_version: 0.8.9-SNAPSHOT
-asterixdb_cc: false
-asterixdb_nc: true
 asterixdb_basedir: asterixdb
 asterixdb_logdir: "{{ asterixdb_basedir }}/logs"
 asterixdb_installdir: "{{ asterixdb_basedir }}/install"
