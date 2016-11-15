@@ -1,13 +1,13 @@
 ---
 # tasks file for cc
-- name: Download Asterix config file
+- name: Download asterixdb config file
   template:
-    src: asterix.conf
+    src: asterixdb.conf
     dest: "{{ asterixdb_confdir }}"
   changed_when: False
   
 - name: Start CC
   shell: >
-    nohup {{ asterixdb_installdir }}/bin/asterixcc -config-file {{ asterixdb_confdir }}/asterix.conf < /dev/null > {{ asterixdb_logdir }}/cc.log 2>&1 &
+    nohup {{ asterixdb_installdir }}/bin/asterixcc -config-file {{ asterixdb_confdir }}/asterixdb.conf < /dev/null > {{ asterixdb_logdir }}/cc.log 2>&1 &
   when: "not 'CCDriver' in jps_output.stdout"
 

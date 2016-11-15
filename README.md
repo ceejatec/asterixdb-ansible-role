@@ -1,4 +1,4 @@
-asterixdb
+ceejatec.asterixdb
 =========
 
 Apache AsterixDB
@@ -12,6 +12,10 @@ Role Variables
 --------------
 
 asterixdb_version
+asterixdb_basedir
+asterixdb_confdir
+asterixdb_logdir
+asterixdb_installdir
 
 Dependencies
 ------------

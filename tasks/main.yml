@@ -1,5 +1,5 @@
 ---
-- name: Create Asterix working directories
+- name: Create asterixdb working directories
   file:
     path: "{{ item }}"
     state: directory
@@ -8,14 +8,14 @@
     - "{{ asterixdb_installdir }}"
     - "{{ asterixdb_confdir }}"
 
-- name: Download and unpack Asterix
-  unarchive:
-    src: asterix-server-{{ asterixdb_version }}-binary-assembly.zip
-    dest: "{{ asterixdb_installdir }}"
-    creates: "{{ asterixdb_installdir }}/bin/asterixncservice"
+- name: Check for local installation archive
+  local_action: stat path=asterix-server-{{ asterixdb_version }}-binary-assembly.zip
+  register: local_archive
+  become: no
 
-- name: Check Asterix processes
+- include: local_archive_{{ local_archive.stat.exists }}.yml
+
+- name: Check asterixdb processes
   shell: jps
   register: jps_output
-
 

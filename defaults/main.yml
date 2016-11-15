@@ -1,7 +1,7 @@
 ---
 # defaults file for asterixdb
 asterixdb_version: 0.8.9-SNAPSHOT
-asterixdb_basedir: asterixdb
+asterixdb_basedir: "{{ ansible_user_dir }}/asterixdb"
 asterixdb_logdir: "{{ asterixdb_basedir }}/logs"
 asterixdb_installdir: "{{ asterixdb_basedir }}/install"
 asterixdb_confdir: "{{ asterixdb_basedir }}/conf"
