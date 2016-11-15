@@ -1,0 +1,7 @@
+---
+- name: Download and unpack Apache AsterixDB {{ asterixdb_version }}
+  unarchive:
+    src: asterix-server-{{ asterixdb_version }}-binary-assembly.zip
+    dest: "{{ asterixdb_installdir }}"
+    creates: "{{ asterixdb_installdir }}/bin/asterixncservice"
+

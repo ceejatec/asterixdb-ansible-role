@@ -1,0 +1,17 @@
+---
+- block:
+    - name: Download Apache AsterixDB {{ asterixdb_version }}
+      get_url:
+        url: http://www.example.com/no_packaged_asterixdb
+        dest: "{{ asterixdb_installdir }}/asterix-server-{{ asterixdb_version }}-binary-assembly.zip"
+  rescue:
+    - fail:
+        msg: "http://www.example.com/no_packaged_asterixdb does not exist (do you need to specify a different asterixdb_version?)"  
+
+- name: Unpack Apache AsterixDB
+  unarchive:
+    src: "{{ asterixdb_installdir }}/asterix-server-{{ asterixdb_version }}-binary-assembly.zip"
+    copy: no
+    dest: "{{ asterixdb_installdir }}"
+    creates: "{{ asterixdb_installdir }}/bin/asterixncservice"
+
